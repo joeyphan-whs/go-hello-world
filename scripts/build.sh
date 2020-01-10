@@ -9,7 +9,7 @@ image() {
 }
 
 test() {
-    ginkgo -cover ./cmd/go-hello-world
+    go test ./cmd/go-hello-world
 }
 
 : ${1?}
