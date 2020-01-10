@@ -8,11 +8,6 @@ on:
   pull_request:
     branches:
       - master
-  # Also trigger on page_build, as well as release created events
-  page_build:
-  release:
-    types: # This configuration does not affect the page_build event above
-      - created
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,3 +15,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: ./scripts/build.sh image
+    - name: run unit tests
+      run: ./scripts/build.sh test
