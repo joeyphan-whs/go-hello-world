@@ -24,5 +24,7 @@ jobs:
       with:
         go-version: 1.12
       id: go
+    - name: install ginkgo
+      run: go get github.com/onsi/ginkgo/ginkgo
     - name: run unit tests
-      run: go get github.com/onsi/ginkgo/ginkgo && ./scripts/build.sh test
+      run: ./scripts/build.sh test
