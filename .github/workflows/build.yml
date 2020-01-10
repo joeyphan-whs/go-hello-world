@@ -12,13 +12,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: ./scripts/build.sh image
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
     - name: Set up Go 1.12
       uses: actions/setup-go@v1
       with:
         go-version: 1.12
       id: go
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: ./scripts/build.sh image
     - name: run unit tests
       run: go get github.com/onsi/ginkgo/ginkgo && ./scripts/build.sh test
