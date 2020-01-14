@@ -1,0 +1,32 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+
+pr:
+  # specific branch
+  branches:
+    include:
+    - master
+    - releases/*
+  # specific path 
+  paths:
+    include:
+    - build/*
+    - cmd/*
+    - scripts/*
+    - azure-pipelines*
+    # Can exclude paths that were in the include
+    exclude:
+    - cmd/README.md
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: ./scripts/build.sh image
+  displayName: 'Run a one-line script'
